@@ -30,15 +30,23 @@ export class HomeComponent {
       this.currentCountry = data[Math.floor(Math.random()*194)]
       this.answer = this.currentCountry.translations.por.common
       .toLowerCase()
-      this.img.nativeElement.src = this.currentCountry.flags.png;
-      this.img.nativeElement.style.display='none'
       console.log(this.answer)
     })
   }
   
   onSubmit(){
     if(this.form.value.userAnswer.toLowerCase() === this.answer.toLowerCase()){
-      console.log('nice')
+      this.fetchApi();
+      this.attempts=0;
+      this.img.nativeElement.style.opacity=0
+    }else 
+      this.attempts++;
+    
+    if(this.attempts==3){
+      this.img.nativeElement.src = this.currentCountry.flags.png;
+      this.img.nativeElement.style.opacity=1
     }
+  
+    this.form.reset();
   }
 }

@@ -1,5 +1,8 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
   <input type="text" formControlName="userAnswer">
   <button type="submit">Enviar</button>
-  <img #img src="" alt="Respective country flag">
+  <aside>
+    <img #img src="" alt="Respective country flag" style="opacity: 0;">
+  </aside>
+  <h1>{{ attempts }}</h1>
 </form>
