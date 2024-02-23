@@ -33,14 +33,22 @@ export class HomeComponent {
       console.log(this.answer)
     })
   }
+
+  fetchSpecificCountry(userAnswer: string){
+    this.httpService.getSpecificCountry(userAnswer).subscribe((data: any) =>{
+      console.log(data[0]);
+    })
+  }
   
   onSubmit(){
     if(this.form.value.userAnswer.toLowerCase() === this.answer.toLowerCase()){
+      this.img.nativeElement.style.opacity=0
       this.fetchApi();
       this.attempts=0;
-      this.img.nativeElement.style.opacity=0
-    }else 
+    }else {
       this.attempts++;
+      this.fetchSpecificCountry(this.form.value.userAnswer)
+    }
     
     if(this.attempts==3){
       this.img.nativeElement.src = this.currentCountry.flags.png;
