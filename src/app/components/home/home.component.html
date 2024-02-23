@@ -1,1 +1,5 @@
-<p>home works!</p>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <input type="text" formControlName="userAnswer">
+  <button type="submit">Enviar</button>
+  <img #img src="" alt="Respective country flag">
+</form>
