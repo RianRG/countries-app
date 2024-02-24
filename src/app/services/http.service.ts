@@ -16,4 +16,8 @@ export class HttpService {
   getSpecificCountry(value: string){
     return this.http.get(`https://restcountries.com/v3.1/translation/${value}?fields=latlng,translations`)
   }
+
+  getCountriesWhenTyping(value: string){
+    return this.http.get(`https://restcountries.com/v3.1/translation/${value}?fields=translations,independent`);
+  }
 }

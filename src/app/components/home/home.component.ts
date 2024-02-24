@@ -15,6 +15,7 @@ export class HomeComponent {
   currentCountry!: any;
   attempts=0;
   answer!: string;
+  suggestedCountries: string[] = []
 
   //user guesses
   guesses: IGuess[] = [];
@@ -77,5 +78,15 @@ export class HomeComponent {
     }
   
     this.form.reset();
+  }
+
+  onInput(){
+    this.suggestedCountries = [];
+    this.httpService.getCountriesWhenTyping(this.form.value.userAnswer).subscribe((data: any) =>{
+      data.forEach((country: any) =>{
+        if(country.independent)
+          this.suggestedCountries.push(country.translations.por.common);
+      })
+    })
   }
 }
