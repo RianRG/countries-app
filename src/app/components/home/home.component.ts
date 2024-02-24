@@ -1,5 +1,6 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ArrowsService } from 'src/app/services/arrows.service';
 import { CalculateLatLngService } from 'src/app/services/calculate-lat-lng.service';
 import { HttpService } from 'src/app/services/http.service';
 import { IGuess } from 'src/interfaces/IGuess';
@@ -21,7 +22,8 @@ export class HomeComponent {
   constructor(
     private httpService: HttpService,
     private fb: FormBuilder,
-    private calcDistance: CalculateLatLngService
+    private calcDistance: CalculateLatLngService,
+    private arrowsService: ArrowsService
   ){
     this.form = this.fb.group({
       userAnswer: ['', Validators.required]
@@ -43,7 +45,6 @@ export class HomeComponent {
 
   fetchSpecificCountry(userAnswer: string){
     this.httpService.getSpecificCountry(userAnswer).subscribe((data: any) =>{
-      console.log(data[0]);
       this.guesses.push({
         countryName: userAnswer,
         distanceInKm: this.calcDistance.calculateKm(
@@ -52,8 +53,9 @@ export class HomeComponent {
           this.currentCountry.latlng[0],
           this.currentCountry.latlng[1]
           ),
-        directionTo: 'k'
+        directionTo: this.arrowsService.determineArrows(data[0].latlng, this.currentCountry.latlng)
       })
+
     })
   }
   
