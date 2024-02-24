@@ -19,6 +19,7 @@ export class HomeComponent {
   suggestedCountries: string[] = []
   allCountries: string[] = [];
 
+  errorMessage!: string;
   //user guesses
   guesses: IGuess[] = [];
 
@@ -72,8 +73,12 @@ export class HomeComponent {
       this.attempts=0;
       this.guesses = [];
     }else {
-      this.attempts++;
-      this.fetchSpecificCountry(this.form.value.userAnswer)
+      if(this.allCountries.includes( this.capitalizeWord(this.form.value.userAnswer ))){
+        this.errorMessage = '';
+        this.attempts++;
+        this.fetchSpecificCountry(this.form.value.userAnswer)
+      } else
+        this.errorMessage = 'País inválido!'
     }
     
     if(this.attempts==3){
@@ -88,5 +93,9 @@ export class HomeComponent {
    this.suggestedCountries = this.allCountries.filter(country =>{
     return country.toLowerCase().includes(this.form.value.userAnswer.toLowerCase());
    })
+  }
+
+  capitalizeWord(value: string){
+    return value[0].toUpperCase() + value.slice(1);
   }
 }

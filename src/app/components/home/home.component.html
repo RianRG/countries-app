@@ -1,9 +1,15 @@
 <main>
+  <div class="error">
+    <p>{{ errorMessage }}</p>
+  </div>
   <aside class="display">
     <img #img src="" alt="Respective country flag" style="opacity: 0;">
   </aside>
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
-    <input type="text" formControlName="userAnswer" (input)="onInput()">
+    <input type="text" list="countriesList" formControlName="userAnswer" (input)="onInput()">
+    <datalist id="countriesList">
+      <option *ngFor="let country of suggestedCountries" [value]="country">{{ country }}</option>
+    </datalist>
     <button type="submit">Enviar</button>
     <h1 class="attempts">{{ attempts }}</h1>
   </form>
@@ -12,7 +18,4 @@
     <p>{{ k.distanceInKm }}</p>
     <p>{{ k.directionTo }}</p>
   </aside>
-  <ul *ngFor="let k of suggestedCountries">
-    <li>{{ k }}</li>
-  </ul>
 </main>
