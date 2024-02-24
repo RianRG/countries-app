@@ -9,7 +9,7 @@ export class HttpService {
 
   constructor(private http: HttpClient) { }
 
-  getCountriesApi(){
+  getAllCountries(){
     return this.http.get('https://restcountries.com/v3.1/independent?status=true&&fields=capital,region,translations,latlng,flags');
   }
 

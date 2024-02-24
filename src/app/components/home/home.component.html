@@ -1,8 +1,15 @@
-<form [formGroup]="form" (ngSubmit)="onSubmit()">
-  <input type="text" formControlName="userAnswer">
-  <button type="submit">Enviar</button>
-  <aside>
+<main>
+  <aside class="display">
     <img #img src="" alt="Respective country flag" style="opacity: 0;">
   </aside>
-  <h1>{{ attempts }}</h1>
-</form>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <input type="text" formControlName="userAnswer">
+    <button type="submit">Enviar</button>
+    <h1 class="attempts">{{ attempts }}</h1>
+  </form>
+  <aside class="guesses" *ngFor="let k of guesses">
+    <p>{{ k.countryName }}</p>
+    <p>{{ k.distanceInKm }}</p>
+    <p>{{ k.directionTo }}</p>
+  </aside>
+</main>
