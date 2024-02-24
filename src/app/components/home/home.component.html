@@ -1,17 +1,17 @@
 <main>
-  <div class="error">
-    <p>{{ errorMessage }}</p>
+  <div [ngClass]="errorClass===true ? 'onError' : 'notOnError'">
+    <p>País inválido!</p>
   </div>
   <aside class="display">
     <img #img src="" alt="Respective country flag" style="opacity: 0;">
   </aside>
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <h1 class="attempts">Tentativas: {{ attempts }}</h1>
     <input type="text" list="countriesList" formControlName="userAnswer" (input)="onInput()">
     <datalist id="countriesList">
       <option *ngFor="let country of suggestedCountries" [value]="country">{{ country }}</option>
     </datalist>
     <button type="submit">Enviar</button>
-    <h1 class="attempts">{{ attempts }}</h1>
   </form>
   <aside class="guesses" *ngFor="let k of guesses">
     <p>{{ k.countryName }}</p>

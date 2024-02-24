@@ -19,7 +19,7 @@ export class HomeComponent {
   suggestedCountries: string[] = []
   allCountries: string[] = [];
 
-  errorMessage!: string;
+  errorClass: boolean = false;
   //user guesses
   guesses: IGuess[] = [];
 
@@ -74,14 +74,14 @@ export class HomeComponent {
       this.guesses = [];
     }else {
       if(this.allCountries.includes( this.capitalizeWord(this.form.value.userAnswer ))){
-        this.errorMessage = '';
+        this.errorClass = false;
         this.attempts++;
-        this.fetchSpecificCountry(this.form.value.userAnswer)
+        this.fetchSpecificCountry(this.capitalizeWord( this.form.value.userAnswer ))
       } else
-        this.errorMessage = 'País inválido!'
+        this.errorClass = true;
     }
     
-    if(this.attempts==3){
+    if(this.attempts==4){
       this.img.nativeElement.src = this.currentCountry.flags.png;
       this.img.nativeElement.style.opacity=1
     }
@@ -96,6 +96,17 @@ export class HomeComponent {
   }
 
   capitalizeWord(value: string){
-    return value[0].toUpperCase() + value.slice(1);
+    let words = value.split(' ');
+
+    if(words.length===1){
+      return value[0].toUpperCase() + value.slice(1).toLowerCase();
+    }
+
+    words = words.map(word =>{
+      if(word.length===1) return word
+      return word[0].toUpperCase() + word.slice(1).toLowerCase()
+    })
+
+    return words.join(' ')
   }
 }
