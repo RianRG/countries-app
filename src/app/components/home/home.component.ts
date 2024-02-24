@@ -15,7 +15,9 @@ export class HomeComponent {
   currentCountry!: any;
   attempts=0;
   answer!: string;
+
   suggestedCountries: string[] = []
+  allCountries: string[] = [];
 
   //user guesses
   guesses: IGuess[] = [];
@@ -37,6 +39,8 @@ export class HomeComponent {
 
   fetchApi(){
     this.httpService.getAllCountries().subscribe((data: any) =>{
+      this.allCountries = data.map((k: any) => k.translations.por.common);
+
       this.currentCountry = data[Math.floor(Math.random()*194)]
       this.answer = this.currentCountry.translations.por.common
       .toLowerCase()
@@ -81,12 +85,8 @@ export class HomeComponent {
   }
 
   onInput(){
-    this.suggestedCountries = [];
-    this.httpService.getCountriesWhenTyping(this.form.value.userAnswer).subscribe((data: any) =>{
-      data.forEach((country: any) =>{
-        if(country.independent)
-          this.suggestedCountries.push(country.translations.por.common);
-      })
-    })
+   this.suggestedCountries = this.allCountries.filter(country =>{
+    return country.toLowerCase().includes(this.form.value.userAnswer.toLowerCase());
+   })
   }
 }
