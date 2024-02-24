@@ -68,6 +68,7 @@ export class HomeComponent {
   onSubmit(){
     if(this.form.value.userAnswer.length < 3) return;
     if(this.form.value.userAnswer.toLowerCase() === this.answer.toLowerCase()){
+      this.errorClass = false;
       this.img.nativeElement.style.opacity=0
       this.fetchApi();
       this.attempts=0;
@@ -103,7 +104,7 @@ export class HomeComponent {
     }
 
     words = words.map(word =>{
-      if(word.length===1) return word
+      if(word.length<=2) return word
       return word[0].toUpperCase() + word.slice(1).toLowerCase()
     })
 

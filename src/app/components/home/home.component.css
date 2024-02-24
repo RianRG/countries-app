@@ -53,11 +53,19 @@ form button:hover{
 }
 .guesses{
   display: flex;
+  justify-content: center;
+  align-items: center;
   gap: 20px;
   margin-bottom: 30px;
 }
+.guesses p{
+  text-align: center;
+  width: 80px;
+  margin: 0 30px;
+}
 .onError{
   background-color: rgb(105, 148, 105);
+  z-index: 1000;
   padding: 8px;
   opacity: 1;
   transition: .4s;
