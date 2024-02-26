@@ -1,5 +1,5 @@
 *::selection{
-  background-color: orangered;
+  background-color: rgb(68, 97, 67);
   color: white;
 }
 main{
@@ -14,11 +14,13 @@ main{
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   height: 200px;
   width: 200px;
   margin-bottom: 40px;
 }
 img{
+  max-width: 300px;
   transition: .4s;
 }
 form{
@@ -73,4 +75,9 @@ form button:hover{
 .notOnError{
   opacity: 0;
   transition: .4s;
+}
+.testt{
+  height: 300px;
+  width: 300px;
+  background-color: red;
 }

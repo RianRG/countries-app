@@ -13,6 +13,7 @@ export class HomeComponent {
   @ViewChild('img') img!: ElementRef;
   form!: FormGroup;
   currentCountry!: any;
+  countrysCapital!: string;
   attempts=0;
   answer!: string;
 
@@ -73,6 +74,7 @@ export class HomeComponent {
       this.fetchApi();
       this.attempts=0;
       this.guesses = [];
+      this.countrysCapital='';
     }else {
       if(this.allCountries.includes( this.capitalizeWord(this.form.value.userAnswer ))){
         this.errorClass = false;
@@ -82,9 +84,14 @@ export class HomeComponent {
         this.errorClass = true;
     }
     
-    if(this.attempts==4){
+    if(this.attempts==5){
+      this.countrysCapital='';
       this.img.nativeElement.src = this.currentCountry.flags.png;
       this.img.nativeElement.style.opacity=1
+    }
+
+    if(this.attempts==3){
+      this.countrysCapital = `Capital: ${this.currentCountry.capital}`;
     }
   
     this.form.reset();
@@ -99,9 +106,12 @@ export class HomeComponent {
   capitalizeWord(value: string){
     let words = value.split(' ');
 
-    if(words.length===1){
+    if(words.length===1 && !value.includes('-')){
       return value[0].toUpperCase() + value.slice(1).toLowerCase();
+    } else if(words.length===1 && value.includes('-')){
+      return value;
     }
+
 
     words = words.map(word =>{
       if(word.length<=2) return word
