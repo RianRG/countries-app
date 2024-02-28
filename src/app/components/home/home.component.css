@@ -98,3 +98,13 @@ form button:hover{
 .settings:hover{
   padding: 2px 10px;
 }
+
+.onScreen{
+  position: absolute;
+  margin: 0 auto;
+  opacity: 1;
+  background-color: rgb(223, 223, 223);
+  height: 0;
+  width: 400px;
+  transition: .5s;
+}

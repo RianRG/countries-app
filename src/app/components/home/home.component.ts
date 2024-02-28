@@ -11,6 +11,7 @@ import { IGuess } from 'src/interfaces/IGuess';
 })
 export class HomeComponent {
   @ViewChild('img') img!: ElementRef;
+  @ViewChild('div') div!: ElementRef;
   form!: FormGroup;
   currentCountry!: any;
   countrysCapital!: string;
@@ -21,6 +22,7 @@ export class HomeComponent {
   allCountries: string[] = [];
 
   errorClass: boolean = false;
+  onScreen: boolean = false;
   //user guesses
   guesses: IGuess[] = [];
 
@@ -123,8 +125,15 @@ export class HomeComponent {
 
     return words.join(' ')
   }
-
+  
   openMenu(){
-    
+    this.onScreen = !this.onScreen;
+    if(!this.onScreen){
+      this.div.nativeElement.style.height='0'
+      this.div.nativeElement.style.opacity=0
+    } else{
+      this.div.nativeElement.style.height='400px'
+      this.div.nativeElement.style.opacity=1
+    }
   }
 }
