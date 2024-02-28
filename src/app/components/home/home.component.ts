@@ -54,12 +54,12 @@ export class HomeComponent {
     this.httpService.getSpecificCountry(userAnswer).subscribe((data: any) =>{
       this.guesses.push({
         countryName: userAnswer,
-        distanceInKm: this.calcDistance.calculateKm(
+        distanceInKm: `${this.calcDistance.calculateKm(
           data[0].latlng[0], 
           data[0].latlng[1],
           this.currentCountry.latlng[0],
           this.currentCountry.latlng[1]
-          ),
+          )}km`,
         directionTo: this.arrowsService.determineArrows(data[0].latlng, this.currentCountry.latlng)
       })
 
