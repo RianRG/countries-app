@@ -2,18 +2,26 @@
   <div [ngClass]="errorClass===true ? 'onError' : 'notOnError'">
     <p>País inválido!</p>
   </div>
+
+  <button class="settings" (click)="openMenu()">
+    <i class='bx bxs-cog'></i>
+  </button>
+
   <aside class="display">
     <img #img src="" alt="Respective country flag" style="opacity: 0;">
     <h4>{{ countrysCapital }}</h4>
   </aside>
+
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <h1 class="attempts">Tentativas: {{ attempts }}</h1>
     <input type="text" list="countriesList" formControlName="userAnswer" (input)="onInput()">
     <datalist id="countriesList">
       <option *ngFor="let country of suggestedCountries" [value]="country">{{ country }}</option>
     </datalist>
+
     <button type="submit">Enviar</button>
   </form>
+
   <aside class="guesses" *ngFor="let k of guesses">
     <p>{{ k.countryName }}</p>
     <p>{{ k.distanceInKm }}</p>

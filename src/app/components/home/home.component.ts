@@ -123,4 +123,8 @@ export class HomeComponent {
 
     return words.join(' ')
   }
+
+  openMenu(){
+    
+  }
 }
