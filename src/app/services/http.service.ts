@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ICountry } from 'src/interfaces/ICountry';
-import { Observable } from 'rxjs';
+import { IUser } from 'src/interfaces/IUser';
 @Injectable({
   providedIn: 'root'
 })
@@ -19,5 +18,9 @@ export class HttpService {
 
   getCountriesWhenTyping(value: string){
     return this.http.get(`https://restcountries.com/v3.1/translation/${value}?fields=translations,independent`);
+  }
+
+  createUser(body: IUser){
+    return this.http.post('http://localhost:5000/user', body)
   }
 }
