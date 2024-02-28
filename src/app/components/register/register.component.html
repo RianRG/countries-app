@@ -1,1 +1,7 @@
-<p>register works!</p>
+<main>
+  <form [formGroup]="registerForm" (ngSubmit)="createUser()">
+    <input type="text" formControlName="nick">
+    <input type="text" formControlName="password">
+    <button type="submit">Enviar</button>
+  </form>
+</main>
