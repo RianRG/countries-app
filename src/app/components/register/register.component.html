@@ -1,7 +1,13 @@
 <main>
+  <div [ngClass]="errorClass===true ? 'onError' : 'notOnError'">
+    <p>Name and password length must be longer than 4</p>
+  </div>
+  <h1>Register your account</h1>
   <form [formGroup]="registerForm" (ngSubmit)="createUser()">
-    <input type="text" formControlName="nick">
-    <input type="text" formControlName="password">
+    <input type="text" formControlName="nick" required>
+    <label for="text">Nickname</label>
+    <input type="text" formControlName="password" required>
+    <label for="password">Password</label>
     <button type="submit">Enviar</button>
   </form>
 </main>

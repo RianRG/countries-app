@@ -69,6 +69,9 @@ export class HomeComponent {
   onSubmit(){
     if(this.form.value.userAnswer.length < 3) return;
     if(this.form.value.userAnswer.toLowerCase() === this.answer.toLowerCase()){
+      this.httpService.increaseScore().subscribe(data =>{
+        console.log(data)
+      })
       this.errorClass = false;
       this.img.nativeElement.style.opacity=0
       this.fetchApi();

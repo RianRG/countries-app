@@ -10,6 +10,7 @@ import { HttpService } from 'src/app/services/http.service';
 })
 export class RegisterComponent {
   registerForm!: FormGroup
+  errorClass!: boolean;
   constructor(
     private http: HttpService,
     private fb: FormBuilder,
@@ -23,6 +24,14 @@ export class RegisterComponent {
 
   createUser(){
     const  { nick, password } = this.registerForm.value
+
+    if(nick.length<5 || password.length<5){
+      this.errorClass=true
+      return;
+    }
+    else
+      this.errorClass=false;
+
     this.http.createUser({
       nick,
       password

@@ -23,4 +23,8 @@ export class HttpService {
   createUser(body: IUser){
     return this.http.post('http://localhost:5000/user', body)
   }
+
+  increaseScore(){
+    return this.http.get('http://localhost:5000/user', { withCredentials: true })
+  }
 }
