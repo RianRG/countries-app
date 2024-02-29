@@ -16,15 +16,15 @@ export class HttpService {
     return this.http.get(`https://restcountries.com/v3.1/translation/${value}?fields=latlng,translations`)
   }
 
-  getCountriesWhenTyping(value: string){
-    return this.http.get(`https://restcountries.com/v3.1/translation/${value}?fields=translations,independent`);
-  }
-
   createUser(body: IUser){
     return this.http.post('http://localhost:5000/user', body)
   }
 
   increaseScore(){
     return this.http.get('http://localhost:5000/user', { withCredentials: true })
+  }
+
+  getScore(){
+    return this.http.get('http://localhost:5000/user/score');
   }
 }

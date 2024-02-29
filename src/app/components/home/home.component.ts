@@ -17,6 +17,7 @@ export class HomeComponent {
   countrysCapital!: string;
   attempts=0;
   answer!: string;
+  score!: number
 
   suggestedCountries: string[] = []
   allCountries: string[] = [];
@@ -132,6 +133,9 @@ export class HomeComponent {
       this.div.nativeElement.style.height='0'
       this.div.nativeElement.style.opacity=0
     } else{
+      this.httpService.getScore().subscribe((data: any) =>{
+        this.score = data.score;
+      })
       this.div.nativeElement.style.height='400px'
       this.div.nativeElement.style.opacity=1
     }
