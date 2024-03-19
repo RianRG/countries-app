@@ -1,6 +1,4 @@
-# CountriesApp
-
-# Remake Worldle
+# Worldle Remake
 
 This project is based on the famous game "Worldle". Its a simple game about geography concepts that randomly chooses a country per day, the user has to guess the mistery country based on its outline.
 
